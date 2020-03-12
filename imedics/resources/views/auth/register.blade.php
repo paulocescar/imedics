@@ -6,9 +6,16 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="/registrar">
                         @csrf
 
+                        @if(Session::has('error'))
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <p id="success">Erro, preencha todos os campos.</p></a>
+                            </div>
+                        </div>
+                        @endif
                         <div class="form-group row">
                             <div class="col-md-12">
                                 <h3 class="titlelogin">Cadastrar uma conta</h3>

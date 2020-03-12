@@ -18,7 +18,11 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/consultorio.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+            
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" defer></script>   
 </head>
 <body>
     <div id="app">
@@ -34,7 +38,24 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                    @guest
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="/usuarios">Usúarios</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="/pacientes">Pacientes</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="/medicos">Médicos</a>
+                        </li>
 
+                        <li class="nav-item">
+                            <a class="nav-link" href="/agendamentos">Agendamentos</a>
+                        </li>
+                    @endguest
                     </ul>
 
                     <!-- Right Side Of Navbar -->

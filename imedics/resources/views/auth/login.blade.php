@@ -9,7 +9,13 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-                        
+                        @if(Session::has('success'))
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <p id="success">Sua conta foi criada com sucesso.</p></a>
+                            </div>
+                        </div>
+                        @endif
                         <div class="form-group row">
                             <div class="col-md-12">
                                 <h3 class="titlelogin">Entre na sua conta</h3>

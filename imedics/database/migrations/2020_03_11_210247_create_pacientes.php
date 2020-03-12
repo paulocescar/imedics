@@ -20,12 +20,11 @@ class CreatePacientes extends Migration
             $table->string('CNPJ')->unique();
             $table->string('sexo');
             $table->string('email');
-            $table->string('celular');
-            $table->string('preferencias');
-            $table->string('password');
-            $table->boolean('comunicao');
+            $table->string('celular')->nullable();
+            $table->string('preferencias')->nullable();
+            $table->boolean('comunicao')->nullable();
             $table->timestamp('data_nascimento');
-            $table->string('observacao');
+            $table->string('observacao')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
