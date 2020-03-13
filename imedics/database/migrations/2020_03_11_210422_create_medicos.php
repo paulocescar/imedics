@@ -15,20 +15,23 @@ class CreateMedicos extends Migration
     {
         Schema::create('medicos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id')->unsigned()->nullable();
             $table->string('nome');
             $table->string('especialidade');
             $table->string('CPF')->unique();
             $table->string('CRM')->unique();
             $table->string('celular');
             $table->string('email');
-            $table->string('preferencias');
-            $table->string('password');
-            $table->boolean('comunicao');
             $table->string('sexo');
             $table->timestamp('data_nascimento');
-            $table->string('observacao');
+            $table->string('observacao')->nullable();
             $table->softDeletes();
             $table->timestamps();
+            
+            $table->foreign('user_id')->references('id')->on('users')->
+            onDelete('restrict')->
+            onUpdate('cascade');
+
         });
     }
 

@@ -4,15 +4,15 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <h3>Usuários</h3>
+            <h3>Agendamentos</h3>
             <table id="table" class="table table-striped">
                 <thead>
                     <tr>
                         <th>Código</th>
-                        <th>Nome</th>
-                        <th>Acesso</th>
-                        <th>E-mail</th>
-                        <th>Data</th>
+                        <th>Médico - Especialidade</th>
+                        <th>Paciente</th>
+                        <th>status</th>
+                        <th>Data Agendamento</th>	
                         <th>Açoes</th>
                     </tr>
                 </thead>
@@ -28,15 +28,15 @@
             'processing' : true,
             'serverSide' : true,
             'ajax' : {
-                'url' : '/usuarios/data',
+                'url' : '/agendamentos/data',
                 'type' : 'get'
             },
             "columns": [
                 {data : 'id'},
-                {data : 'name'},
-                {data : 'level'},
-                {data : 'email'},
-                {data : 'created_at'},
+                {data : 'medico_id'},
+                {data : 'paciente_id'},
+                {data : 'status'},
+                {data : 'data_agendamento'},
                 {data : 'action'}
             ]
         })

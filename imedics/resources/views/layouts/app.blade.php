@@ -22,7 +22,8 @@
             
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" defer></script>   
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" defer></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js" integrity="sha256-u7MY6EG5ass8JhTuxBek18r5YG6pllB9zLqE4vZyTn4=" crossorigin="anonymous"></script>
 </head>
 <body>
     <div id="app">
@@ -40,6 +41,8 @@
                     <ul class="navbar-nav mr-auto">
                     @guest
                     @else
+                    
+                        @if(Auth::User()->level == "A")
                         <li class="nav-item">
                             <a class="nav-link" href="/usuarios">Usúarios</a>
                         </li>
@@ -47,14 +50,29 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/pacientes">Pacientes</a>
                         </li>
-                        
+
                         <li class="nav-item">
                             <a class="nav-link" href="/medicos">Médicos</a>
                         </li>
+                        @endif
+                        
+                        @if(Auth::User()->level == "P")
+                        <li class="nav-item">
+                            <a class="nav-link" href="/agendar">Marcar Consulta</a>
+                        </li>
+                        @endif
 
+                        @if(Auth::User()->level == "P" || Auth::User()->level == "M" || Auth::User()->level == "A")
                         <li class="nav-item">
                             <a class="nav-link" href="/agendamentos">Agendamentos</a>
                         </li>
+                        @endif
+
+                        @if(Auth::User()->level == "P" || Auth::User()->level == "A")
+                        <li class="nav-item">
+                            <a class="nav-link" href="/novoMedico">Trabalhar como médico</a>
+                        </li>
+                        @endif
                     @endguest
                     </ul>
 
@@ -75,7 +93,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Sair') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

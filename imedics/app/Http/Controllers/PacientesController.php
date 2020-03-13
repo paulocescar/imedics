@@ -30,15 +30,16 @@ class PacientesController extends Controller
 
         $novoPaciente = new Pacientes();
         $novoPaciente->nome = $request->nome;
+        $novoPaciente->user_id = Auth::User()->id;
         if($request->CPF){ $novoPaciente->CPF = $request->CPF; }
         if($request->CNPJ){ $novoPaciente->CNPJ = $request->CNPJ; }
         if($request->sexo){ $novoPaciente->sexo = $request->sexo; }
         $novoPaciente->email = $request->email;
-        $novoPaciente->celular = $request->celular;
-        if($request->sexo){ $novoPaciente->preferencias = $request->preferencias; }
-        $novoPaciente->comunicao = $request->comunicao;
+        if($request->celular){ $novoPaciente->celular = $request->celular; }
+        if($request->preferencias){ $novoPaciente->preferencias = $request->preferencias; }
+        if($request->preferencias){ $novoPaciente->comunicao = $request->comunicao; }
         $novoPaciente->data_nascimento = $request->data_nascimento;
-        if($request->sexo){ $novoPaciente->observacao = $request->observacao; }
+        if($request->observacao){ $novoPaciente->observacao = $request->observacao; }
         $novoPaciente->save();
 
         return redirect('/Pacientes')->with('success','Paciente atualizado com sucesso.');
@@ -82,7 +83,7 @@ class PacientesController extends Controller
 
     public function data()
     {
-        $data = Pacientes::select(array('pacientes.id','pacientes.nome','pacientes.email','pacientes.sexo','pacientes.celular','pacientes.CPF','pacientes.CNPJ','pacientes.data_nascimento'));
+        $data = Pacientes::get();
 
         $dt = Datatables::of($data);
 
@@ -145,6 +146,11 @@ class PacientesController extends Controller
                             <div class="form-group">
                                 <label for"nome">Data de nascimento</label>
                                 <input type="date" class="form-control" name="data_nascimento" value="'.with(new \Carbon\Carbon($data->data_nascimento))->format('Y-m-d').'">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="observacao">Observações</label>
+                                <textarea class="form-control rounded-0" name="observacao" id="observacao" rows="3">'.$data->observacao.'</textarea>
                             </div>
                         </div>
                     <div class="modal-body">

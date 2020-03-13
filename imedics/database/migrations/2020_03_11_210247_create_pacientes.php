@@ -15,9 +15,10 @@ class CreatePacientes extends Migration
     {
         Schema::create('pacientes', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id')->unsigned()->nullable();
             $table->string('nome');
-            $table->string('CPF')->unique();
-            $table->string('CNPJ')->unique();
+            $table->string('CPF')->unique()->nullable();;
+            $table->string('CNPJ')->unique()->nullable();;
             $table->string('sexo');
             $table->string('email');
             $table->string('celular')->nullable();
@@ -27,6 +28,10 @@ class CreatePacientes extends Migration
             $table->string('observacao')->nullable();
             $table->softDeletes();
             $table->timestamps();
+            
+            $table->foreign('user_id')->references('id')->on('users')->
+            onDelete('restrict')->
+            onUpdate('cascade');
         });
     }
 

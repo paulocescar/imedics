@@ -17,9 +17,11 @@ class CreateAgendamentos extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('paciente_id')->unsigned()->nullable();
             $table->unsignedBigInteger('medico_id')->unsigned()->nullable();
-            $table->dateTime('inicio');
-            $table->dateTime('fim');
+            $table->dateTime('inicio')->nullable();
+            $table->dateTime('fim')->nullable();
             $table->dateTime('data_agendamento');
+            $table->enum('status',['M','C','E','F']);
+            $table->string('observacao')->nullable();
             $table->softDeletes();
             $table->timestamps();
 
