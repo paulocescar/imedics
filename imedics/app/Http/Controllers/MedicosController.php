@@ -14,7 +14,7 @@ class MedicosController extends Controller
     public function medicosApi(){
         $medicos = Medicos::get();
         $mediosArray = array("medicos" => $medicos);
-        return $mediosArray;
+        return json_encode($mediosArray);
     }
 
     public function medicos(){
