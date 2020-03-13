@@ -153,7 +153,7 @@ class AgendamentosController extends Controller
                 return $status;
                 
             })->editColumn('data_agendamento', function ($data) {
-                return with(new \Carbon\Carbon($data->data_agendamento))->format('m/d/Y H:i:s');
+                return with(new \Carbon\Carbon($data->data_agendamento))->format('d/m/Y H:i:s');
                 
             })->addColumn('action', function ($data) {
                 if($data->status == 'M'){
@@ -185,7 +185,7 @@ class AgendamentosController extends Controller
                 return $status;
                 
             })->editColumn('data_agendamento', function ($data) {
-                return with(new \Carbon\Carbon($data->data_agendamento))->format('m/d/Y H:i:s');
+                return with(new \Carbon\Carbon($data->data_agendamento))->format('d/m/Y H:i:s');
                 
             })->addColumn('action', function ($data) {
                 if($data->status == 'M'){

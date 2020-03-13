@@ -75,7 +75,7 @@ class UsuarioController extends Controller
 
     public function data()
     {
-        $data = User::get();
+        $data = User::select(array('users.id','users.name','users.email','users.level','users.created_at'));
 
         $dt = Datatables::of($data);
 

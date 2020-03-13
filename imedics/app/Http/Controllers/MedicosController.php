@@ -86,7 +86,7 @@ class MedicosController extends Controller
         return back();
     }
     public function data(){
-        $data = Medicos::get();
+        $data = Medicos::select(array('medicos.id','medicos.nome','medicos.CRM','medicos.especialidade'));
 
         $dt = Datatables::of($data);
 

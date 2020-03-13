@@ -83,7 +83,7 @@ class PacientesController extends Controller
 
     public function data()
     {
-        $data = Pacientes::get();
+        $data = Pacientes::select(array('pacientes.id','pacientes.nome','pacientes.sexo','pacientes.data_nascimento'));
 
         $dt = Datatables::of($data);
 
